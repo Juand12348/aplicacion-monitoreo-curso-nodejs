@@ -1,7 +1,5 @@
-import { error } from "node:console";
 import { CheckService } from "../domain/use-cases/checks/check-service";
 import { CronService } from "./cron/cron-service";
-import { url } from "node:inspector";
 
 
 export class Server {

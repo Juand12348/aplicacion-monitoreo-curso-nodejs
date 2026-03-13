@@ -5,8 +5,8 @@ type OnTick = () => void;
 
 export class CronService {
 
-	static createJob( cronTipe: CronTime, onTick : OnTick){
-		const job = new CronJob(cronTipe, onTick);
+	static createJob( cronTime: CronTime, onTick : OnTick){
+		const job = new CronJob(cronTime, onTick);
 
 		job.start();
 
