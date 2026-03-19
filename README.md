@@ -15,3 +15,5 @@ MAILER_EMAIL =
 MAILER_SECRECT_KEY =
 
 ```
+
+3. Ejecutando el comando de ``` npm install ```

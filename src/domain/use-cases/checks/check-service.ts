@@ -1,6 +1,8 @@
 import { LogEntity, LogSeverityLevel } from "../../entities/log.entity";
 import { LogRepository } from "../../repository/log.repository";
 
+
+
 interface CheckServiceUseCase {
     execute(url: string): Promise<boolean>;
 }
@@ -22,12 +24,17 @@ export class CheckService implements CheckService{
 
 
         try{
+            const logE = {
+                message: `Service ${url}`,
+                level: LogSeverityLevel.low, 
+                origin: "check-service.ts"
+            }
             const req = await fetch(url);
             if(!req.ok){
                 throw new Error(`Error on check service ${url}`);
             }
 
-            const log = new LogEntity(`Service ${url}`, LogSeverityLevel.low);
+            const log = new LogEntity(logE);
             this.logRepository.saveLog(log);
             this.successCallback();
           
@@ -35,8 +42,12 @@ export class CheckService implements CheckService{
 
         }catch(error){
             console.log(`${error}`);
-            const errorMessage = `${error}`;
-            const log = new LogEntity(errorMessage, LogSeverityLevel.low);
+            const logE = {
+                message: `${error}`,
+                level: LogSeverityLevel.low,
+                origin: "check-service.ts"
+            }
+            const log = new LogEntity(logE);
             this.logRepository.saveLog(log);
 
             this.errorCallback(`${error}`);
