@@ -44,7 +44,7 @@ export class CheckService implements CheckService{
             console.log(`${error}`);
             const logE = {
                 message: `${error}`,
-                level: LogSeverityLevel.low,
+                level: LogSeverityLevel.high,
                 origin: "check-service.ts"
             }
             const log = new LogEntity(logE);
